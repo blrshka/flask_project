@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-8">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-warning" role="alert">
+        {% for message in messages %}
+            {{ message }}<br>
+        {% endfor %}
+      
+      {% endif %}
+    {% endwith %}
+    </div>
+    <div class="row">
+      <div class="col-8">
+
+          <h2>Not today</h2>
+      </div>
+      <div class="col-4">
+          <h2> Privet medved</h2>   
+      </div>
+    </div>
+  </div>
+  </div>
+  {% endblock %}

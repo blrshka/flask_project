@@ -2,7 +2,6 @@
 
 {% block content %}
   <div class="row">
-    <div class="col-8">
     {% with messages = get_flashed_messages() %}
     {% if messages %}
       <div class="alert alert-warning" role="alert">
@@ -14,9 +13,12 @@
     {% endwith %}
     </div>
     <div class="row">
-      <div class="col-8">
-
-          <h2>Not today</h2>
+    <div class="col-8">
+        <h2>Новости</h2> 
+        {% for news in news_list %}
+        <h3><a href="{{ news.url }}">{{ news.title }}</a> </h3>
+        <hr />
+        {% endfor %}
       </div>
       <div class="col-4">
           <h2> Privet medved</h2>   

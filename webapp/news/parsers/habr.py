@@ -22,15 +22,3 @@ def get_habr_snippets():
             title = news.find('a', class_='article__link').text
             url = news.find('a',class_='article__link')['href']
             save_news(title, url)
-
-'''def get_news_content():
-    news_without_text = News.query.filter(News.text.is_(None))
-    for news in news_without_text:
-        html = get_html(news.url)
-        if html:
-            soup = BeautifulSoup(html, 'html.parser')
-            article = soup.find('div', class_='article__container-excerpt').decode_contents()
-            if article:
-                news.text = article
-                db.session.add(news)
-                db.session.commit()'''

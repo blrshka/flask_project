@@ -13,5 +13,4 @@ def index():
 @blueprint.route("/")
 def start():
     title = 'Pet project'
-    news_list = News.query.order_by(News.title).all()
-    return render_template('news/start.html', page_title=title, news_list=news_list)
+    return render_template('news/start.html', page_title=title)

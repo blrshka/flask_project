@@ -13,19 +13,19 @@
     {% endwith %}
       </div>
   </div>
-  <div class="row">
-    <div class="col-1">
+<div class="row">
+  <div class="col-1">
 
-    </div>
-    <div class="col-8">
-        <h2>Новости</h2> 
-        {% for news in news_list %}
-        <h3><a href="{{ news.url }}">{{ news.title }}</a> </h3>
-        <hr />
-        {% endfor %}
-    </div>
-    <div class="col-3">
+  </div>
+  <div class="col-8">
+        
+    {% for post in post_list %}
+    <h3><a>{{ post.title }}</a> </h3> добавить href
+    <hr />
+    {% endfor %}
+  </div>
+  <div class="col-3">
       
-    </div>
+  </div>
   </div>
   {% endblock %}

@@ -20,11 +20,12 @@
   <div class="col-8">
         
     {% for post in post_list %}
-    <h3><a>{{ post.title }}</a> </h3> добавить href
+    <h3><a href="{{ url_for('post.single_post', id=post.id) }}">{{ post.title }}</a> </h3> 
     <hr />
     {% endfor %}
   </div>
   <div class="col-3">
+      <a class="nav-link" href="{{ url_for('post.new_post') }}">Добавить новый пост </a>
       
   </div>
   </div>

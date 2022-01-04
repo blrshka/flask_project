@@ -1,16 +1,17 @@
 from flask import  abort, Blueprint, blueprints, render_template, current_app, flash, redirect, request
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from webapp.db import db
 from webapp.posts.forms import PostForm
 from webapp.posts.models import Post
+from webapp.utils import get_redirect_target
 
 blueprint = Blueprint('post', __name__, url_prefix='/posts')
 
 @blueprint.route("/")
 def post():
     title = 'Посты пользователей'
-    post_list = Post.query.filter(Post.text.isnot(None)).order_by(Post.title).all()
+    post_list = Post.query.filter(Post.text.isnot(None)).order_by(Post.created.desc()).all()
     return render_template('posts/post.html', page_title=title, post_list=post_list)
 
 
@@ -28,6 +29,7 @@ def new_post():
     return render_template('posts/new_post.html', page_title=title, post_form=post_form)
 
 @blueprint.route('new_post/add', methods=['POST'])
+@login_required
 def add_post():
     form = PostForm()
     if form.validate_on_submit():
@@ -42,5 +44,5 @@ def add_post():
                     getattr(form, field).label.text,
                     error
                 ))
-    return redirect(request.referrer)
+    return redirect(get_redirect_target())
     

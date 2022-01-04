@@ -25,10 +25,10 @@ def single_post(id):
 @blueprint.route('new_post')
 def new_post():
     title = 'Новый пост'
-    post_form = PostForm()
-    return render_template('posts/new_post.html', page_title=title, post_form=post_form)
+    form = PostForm()
+    return render_template('posts/new_post.html', page_title=title, form=form)
 
-@blueprint.route('new_post/add', methods=['POST'])
+@blueprint.route('/add', methods=['POST'])
 @login_required
 def add_post():
     form = PostForm()

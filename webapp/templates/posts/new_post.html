@@ -1,25 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <div class="container">
     
     <div class="row">
         
         <div class="col-4">
-        {% include('messages.html') %}
+            {% include('messages.html') %}
         {% if current_user.is_authenticated %}  
         <form action="{{ url_for('post.add_post') }}" method="POST">
-            {{ post_form.hidden_tag() }}
+            {{ form.hidden_tag() }}
             <div class="form-group">
-                {{ post_form.post_title.label }}
-                {{ post_form.post_title() }}
+                {{ form.post_title.label }}
+                {{ form.post_title() }}
             </div>
             <div class="form-group">
-                {{ post_form.post_text.label }}
-                {{ post_form.post_text() }}
-           
-            </div>
-                {{ post_form.submit() }}
+                <label >{{ form.post_text.label }}</label>
+                <textarea class="form-control" id="post_text" name="post_text" required type="text" value="">
+                    
+                </textarea>
+
+                
+                
+                
+                </div>
+            
+                {{ form.submit() }}
         </form>
         {% else %}
         <p><a href="{{ url_for('user.login', next=request.full_path) }}">Авторизуйтесь</a>,

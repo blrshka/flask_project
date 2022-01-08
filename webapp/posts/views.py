@@ -1,4 +1,4 @@
-from flask import  abort, Blueprint, blueprints, render_template, current_app, flash, redirect, request
+from flask import  abort, Blueprint, blueprints, render_template, current_app, flash, redirect, request, url_for
 from flask_login import current_user, login_required
 
 from webapp.db import db
@@ -37,6 +37,7 @@ def add_post():
         db.session.add(post)
         db.session.commit()
         flash('Пост успешно добавлен')
+        return redirect(url_for('post.post'))
     else:
         for field, errors in form.errors.items():
             for error in errors:

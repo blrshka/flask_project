@@ -2,9 +2,8 @@
 
 {% block content %}
     <div class="row">
-        
+        {% include('messages.html') %}
         <div class="col-8 news-content">
-            {% include('messages.html') %}
             {{ post.text|safe }}
         </div>
     </div>

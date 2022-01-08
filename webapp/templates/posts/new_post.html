@@ -5,7 +5,6 @@
 <div class="container">
     
     <div class="row">
-        
         <div class="col-4">
             {% include('messages.html') %}
         {% if current_user.is_authenticated %}  
@@ -18,15 +17,9 @@
             <div class="form-group">
                 <label >{{ form.post_text.label }}</label>
                 <textarea class="form-control" id="post_text" name="post_text" required type="text" value="">
-                    
                 </textarea>
-
-                
-                
-                
-                </div>
-            
-                {{ form.submit() }}
+            </div>
+            {{ form.submit() }}
         </form>
         {% else %}
         <p><a href="{{ url_for('user.login', next=request.full_path) }}">Авторизуйтесь</a>,

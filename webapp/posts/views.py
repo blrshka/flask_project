@@ -4,6 +4,7 @@ from flask_login import current_user, login_required
 from webapp.db import db
 from webapp.posts.forms import PostForm
 from webapp.posts.models import Post
+from webapp.user.models import User
 from webapp.utils import get_redirect_target
 
 blueprint = Blueprint('post', __name__, url_prefix='/posts')
@@ -46,4 +47,13 @@ def add_post():
                     error
                 ))
     return redirect(get_redirect_target())
-    
+
+
+
+@blueprint.route('/<int:id>/delete', methods=['POST', 'GET'])
+@login_required
+def delete_post(id):
+    e = Post.query.filter(Post.id == id).first()
+    db.session.delete(e)
+    db.session.commit()
+    return redirect(url_for('post.post'))

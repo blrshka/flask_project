@@ -28,7 +28,7 @@ def create_app():
     app.register_blueprint(admin_blueprint)
     app.register_blueprint(news_blueprint)
     app.register_blueprint(posts_blueprint)
-    app.register_blueprint(wb_blueprint)
+    #app.register_blueprint(wb_blueprint)
 
     @login_manager.user_loader
     def load_user(user_id):

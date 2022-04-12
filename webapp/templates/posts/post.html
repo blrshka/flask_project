@@ -10,11 +10,18 @@
       
     </div>
     <div class="col-8">
-        
-    {% for post in post_list %}
-    <h3><a href="{{ url_for('post.single_post', id=post.id) }}">{{ post.title }}</a> </h3> 
-    <hr />
-    {% endfor %}
+    {% if current_user.is_authenticated %}     
+      {% for post in post_list %}
+      <h3><a href="{{ url_for('post.single_post', id=post.id) }}">{{ post.title }}</a> </h3> 
+      
+        <h5>
+          {% if post.user_id == current_user.id %}
+            <a class="action" href="{{ url_for('post.delete_post', id=post.id) }}" method="post">Удалить</a>
+          {% endif %}
+          <hr />
+        </h5>
+      {% endfor %}
+    {% endif %}
     </div>
     <div class="col-3">
       <a class="nav-link" href="{{ url_for('post.new_post') }}">Добавить новый пост </a>
